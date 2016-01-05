@@ -274,73 +274,45 @@ function Slider(dom){
 // state of the slider
 Slider.states = {
   STOP: 1,
-  PAUSE: 12,
+  PAUSE: 2,
   PLAY: 3
 },
 
 // method to create a slider 
 Slider.create = function(dom){
+  
+  // create a slider associated with this dom 
   var slider = new Slider(dom);
+
   // add the hover events to slider
   dom.addEventListener("mouseenter", slider);
   dom.addEventListener("mouseleave", slider);
 
-  // get the slides from the dom
-  var slides = dom.getElementsByClassName("slider__item");
-  
-  // add the slides to the slider
-  var slide;
-  for (var i = 0; i < slides.length; i++) {
-    slide = new Slide(slides[i]);
-    slider.slides.push(slide);
-  }
+  // get the attribute values for customization 
+  var sAddIndicator = dom.getAttribute("s-add-indicator");
+  var sSlideInterval = dom.getAttribute("s-slide-interval");
+  var sSlideDuration = dom.getAttribute("s-slide-duration");
 
-  // make the first slide active
-  slider.slides[0].makeActive();
 
-  slider.totalSlides = slider.slides.length;
+  // add the slides 
+  slider.addSlides();
 
-  var dataSet = dom.dataset;
   // add the indicator if set
-  if(dataSet.addIndicator != "false"){
-    var sliderIndicatorContainer = document.createElement("div");
-    addClass(sliderIndicatorContainer, "slider__indicator");
-    // add the slider indicator to the container dom
-    var sliderIndicator; 
-    for (var i = 0; i < slides.length; i++) {
-      // create a new slider indicator, passing the slider and its index
-      sliderIndicator = SliderIndicator.create(slider, i);
-
-      // add this to slider indicator
-      slider.indicators.push(sliderIndicator);
-
-      // append the dom to slider container
-      sliderIndicatorContainer.appendChild(sliderIndicator.dom);
-    }
-    // make the first indicator active
-    slider.indicators[0].makeActive();
-
-    // apppend the slider indicator container to slider
-    slider.dom.appendChild(sliderIndicatorContainer);
+  if(sAddIndicator != "false"){
+    slider.addIndicators();
   }
 
   // add the slider controller to slider
-  var sliderController;
-  var leftSlideArrow = dom.getElementsByClassName("slider__arrow--left");
-  sliderController = new SliderController(leftSlideArrow[0], slider, SliderController.types.LEFT);
-  slider.controllers.push(sliderController);
-  var rightSlideArrow = dom.getElementsByClassName("slider__arrow--right");
-  sliderController = new SliderController(rightSlideArrow[0], slider, SliderController.types.RIGHT);
-  slider.controllers.push(sliderController);
+  slider.addControllers();
 
   // if slide interval time is set
-  if(dataSet.slideInterval){
-    slider.slideInterval = parseInt(dataSet.slideInterval);
+  if(sSlideInterval){
+    slider.slideInterval = parseInt(sSlideInterval);
   }
 
   // if slide duration time is set
-  if(dataSet.slideDuration){
-    slider.slideDuration = parseInt(dataSet.slideDuration);
+  if(sSlideDuration){
+    slider.slideDuration = parseInt(sSlideDuration);
   }
 
   return slider;
@@ -350,9 +322,66 @@ Slider.prototype = {
   // add the constructor
   constructor : Slider,
 
+  // add slides to our slider
+  addSlides: function(){
+    // get the slides from the dom
+    var slides = this.dom.getElementsByClassName("slider__container")[0].children;
+    
+    // add the slides to the slider
+    var slide;
+    for (var i = 0; i < slides.length; i++) {
+      slide = new Slide(slides[i]);
+      this.slides.push(slide);
+    }
+
+    // make the first slide active
+    this.slides[0].makeActive();
+
+    this.totalSlides = this.slides.length;
+  },
+
+  // add controllers left and right
+  addControllers: function(){
+    var sliderControllers, sControllerType, sliderController; 
+    sliderControllers = this.dom.querySelectorAll('[s-ctrl-type]');
+    for (var i = 0; i < sliderControllers.length; i++) {
+      sCtrlType = sliderControllers[i].getAttribute("s-ctrl-type"); 
+      if(sCtrlType == "left"){
+        sliderController = new SliderController(sliderControllers[i], this, SliderController.types.LEFT);
+        this.controllers.push(sliderController);
+      }else if(sCtrlType == "right"){
+        sliderController = new SliderController(sliderControllers[i], this, SliderController.types.RIGHT);
+        this.controllers.push(sliderController);
+      }
+    };
+  },
+
+  // add slider indicator
+  addIndicators: function(){
+    var sliderIndicatorContainer = document.createElement("div");
+    addClass(sliderIndicatorContainer, "slider__indicator");
+    // add the slider indicator to the container dom
+    var sliderIndicator; 
+    for (var i = 0; i < this.slides.length; i++) {
+      // create a new slider indicator, passing the slider and its index
+      sliderIndicator = SliderIndicator.create(this, i);
+
+      // add this to slider indicator
+      this.indicators.push(sliderIndicator);
+
+      // append the dom to slider container
+      sliderIndicatorContainer.appendChild(sliderIndicator.dom);
+    }
+    // make the first indicator active
+    this.indicators[0].makeActive();
+
+    // apppend the slider indicator container to slider
+    this.dom.appendChild(sliderIndicatorContainer);
+  },
+
   // pause the slide show
   pause: function(){
-    if(this.state == Slide.states.PLAY){
+    if(this.state == Slider.states.PLAY){
       this.state = Slider.states.PAUSE;
       clearInterval(this.timer);
     }
@@ -379,7 +408,10 @@ Slider.prototype = {
 
   // reset the slide and indicator, make _from to inactive and _to to active 
   reset: function(_from, _to){
-    this.indicators[_to].makeActive();
+    // check if indicators are been added or not
+    if(this.indicators.length != 0){
+      this.indicators[_to].makeActive();
+    }
     this.slides[_from].makeInactive();
     this.slides[_to].makeInactive();
     this.slides[_to].makeActive();
@@ -391,7 +423,10 @@ Slider.prototype = {
     if(_to > _from){
       // animate from right to left side
       this.slides[_to].makeNext();
-      this.indicators[_from].makeInactive();
+      // check if indicators are been added or not
+      if(this.indicators.length != 0){
+        this.indicators[_from].makeInactive();
+      }
 
       // call the setTimeout timer with the current context (this)
       setTimeout.call(this, function(){
@@ -405,8 +440,10 @@ Slider.prototype = {
     }else if (_to < _from) {
       // animate to left side
       this.slides[_to].makePrev();
-      this.indicators[_from].makeInactive();
-
+      // check if indicators are been added or not
+      if(this.indicators.length != 0){
+        this.indicators[_from].makeInactive();
+      }
       setTimeout.call(this, function(){
         this.slides[_from].slideRight();
         this.slides[_to].slideRight();
@@ -419,15 +456,31 @@ Slider.prototype = {
 
   // go to next slide
   next : function(){
+    var paused = false;
+    if(this.state == Slider.states.PLAY){
+      this.state = Slider.states.PAUSE;
+      paused = true;
+    }
     var next = (this.activeSlide + 1) % this.totalSlides;
     this.goToSlide(this.activeSlide, next);
+    if(paused){
+      this.state = Slider.states.PLAY;
+    }
   },
 
   // go to prev slide
   prev : function(){
+    var paused = false;
+    if(this.state == Slider.states.PLAY){
+      this.state = Slider.states.PAUSE;
+      paused = true;
+    }
     var prevIndex = (this.activeSlide - 1) % this.totalSlides;
     prevIndex = prevIndex < 0 ? this.totalSlides-1: prevIndex;
     this.goToSlide(this.activeSlide, prevIndex);
+    if(paused){
+      this.state = Slider.states.PLAY;
+    }
   },
 
   // handle events

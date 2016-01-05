@@ -143,11 +143,19 @@ body{
   width: 100%;
   height: auto;
   background: black;
-  overflow: hidden;
   box-shadow: 20px 0px 60px black;
 }
 
+.slider__container{
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  z-index: 1;
+}
+
 .slider__item{
+  position: relative;
   width: 100%;
   height: auto;
   display: none;
@@ -155,8 +163,6 @@ body{
   perspective: 1000px;
   transition: transform ease-in-out .6s;
   transform-origin: left;
-  position: relative;
-  z-index: 1;
 }
 
 .slider__item--active.slider__item--active-to-left, .slider__item--prev{
