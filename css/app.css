@@ -61,6 +61,10 @@ body{
   padding: 5px 10px;
 }
 
+.navbar__menu__item:hover{
+  color: silver;
+}
+
 .logo{
   display: inline-block;
   margin: 5px auto;

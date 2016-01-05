@@ -453,5 +453,5 @@ var sliders = document.getElementsByClassName("slider");
 var slider ;
 for (var i = 0; i < sliders.length; i++) {
   slider = Slider.create(sliders[i]);
-  // slider.play();
+  slider.play();
 }
