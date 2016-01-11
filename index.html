@@ -6,34 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog | Tourepedia</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/base.css" media="screen" title="main style sheet" charset="utf-8">
+    <link rel="stylesheet" href="./css/modules.css" media="screen" title="main style sheet" charset="utf-8">
+    <link rel="stylesheet" href="./css/layout.css" media="screen" title="main style sheet" charset="utf-8">
     <link rel="stylesheet" href="./css/app.css" media="screen" title="main style sheet" charset="utf-8">
   </head>
   <body>
 
-    <nav class="navbar navbar--fixed-top">
-      <div class="navbar__logo">
-         <div class="logo">
-           Tourepedia
-         </div>
-      </div>
-      <div class="navbar__menu">
-        <a href="index.html" class="navbar__menu__item ">Home</a>
-        <a href="about.html" class="navbar__menu__item ">About</a>
-        <a href="#" class="navbar__menu__item ">Search</a>
-      </div>
+    <nav class="navbar navbar--fixed-top clearfix">
+      <div class="mobile-menu-container" id="mobileMenu">
+        <ul class="list mobile-menu">
+          <a class="list__item mobile-menu__item" href="index.html">
+          <span class="logo">Tourepedia</span>
+          </a>
+          <a class="list__item mobile-menu__item " href="about.html" >About</a>
+          <a class="list__item mobile-menu__item " href="about.html" >Plan A Trip</a>
+          <a class="list__item mobile-menu__item " href="index.html" >Search</a>
+          <a class="list__item mobile-menu__item " href="index.html" >Login</a><a class="list__item mobile-menu__item " href="about.html" >About</a>
 
-      <ul class="list">
-        <!-- <li class="list__item list__item--inline">Login/Singup</li> -->
-        <li class="list__item list__item--inline avatar" >
-          <img class="avatar__image avatar__image--x-small" src="./img/avatar.png" alt="DP" />
-          <span class="avatar__text">User Name</span>
+        </ul>
+      </div>
+      <ul class="list navbar__menu navbar__menu--left">
+        <li class="list__item list__item--inline navbar__menu__item btn navbar__menu__item--toggle" onclick="ShowMenu()">
+          <i class="fa fa-bars"></i>
         </li>
+        <a class="list__item list__item--inline list__item--inline--first navbar__menu__item logo" href="index.html">Tourepedia</a>
+        <li class="list__item list__item--inline list navbar__menu__item--toggle-items">
+          <a class="list__item list__item--inline navbar__menu__item " href="about.html" >About</a>
+          <a class="list__item list__item--inline navbar__menu__item " href="index.html" >Plan A trip</a>
+        </li>  
+      </ul>
+      <ul class="list navbar__menu navbar__menu--right">
+        <button class="list__item list__item--inline navbar__menu__item avatar btn">
+          <img src="./img/avatar.png" alt="user icon" class="avatar__image avatar__image--x-small">
+        </button>
       </ul>
     </nav>
 
     <div class="slider">
       <div class="slider__container">
-        <div class="slider__item">
+        <div class="slider__item slider__item--active">
           <div class="trending-blog">
             <div class="trending-blog__image" style="background-image: url('./img/blog3.jpg')">
             </div>
@@ -41,7 +53,7 @@
               <div class="blog-title">
                 This is the title of the blog
               </div>
-              <a href="#" class="blog-info avatar">
+              <a href="author.html" class="blog-info avatar">
                 <img class="avatar__image avatar__image--x-small" src="./img/author1.png" alt="author">
                 <span class="avatar__text">
                   <span class="avatar__title">Sudhir Mitahrwal</span>
@@ -55,9 +67,9 @@
                 attention of visitors.
               </div>
               <div class="blog-actions btn-list">
-                <a href="blog.html" class="btn-list__item btn-list__item--first"><i class="fa fa-arrow-right"></i> Read</a>
-                <button type="button" class="btn-list__item"><i class="fa fa-thumbs-up"></i> Like</button>
-                <button type="button" class="btn-list__item"><i class="fa fa-share"></i> Share</button>
+                <a href="blog.html" class="btn-list__item btn-list__item--first btn btn--default"><i class="fa fa-arrow-right"></i> Read</a>
+                <button type="button" class="btn-list__item btn btn--default"><i class="fa fa-thumbs-up"></i> Like</button>
+                <button type="button" class="btn-list__item btn btn--default"><i class="fa fa-share"></i> Share</button>
               </div>
             </div>
           </div>
@@ -84,9 +96,9 @@
                 attention of visitors.
               </div>
               <div class="blog-actions btn-list">
-                <a href="blog.html" class="btn-list__item">Read</a>
-                <button type="button" class="btn-list__item">Like</button>
-                <button type="button" class="btn-list__item">Share</button>
+                <a href="blog.html" class="btn-list__item btn-list__item--first btn btn--default"><i class="fa fa-arrow-right"></i> Read</a>
+                <button type="button" class="btn-list__item btn btn--default"><i class="fa fa-thumbs-up"></i> Like</button>
+                <button type="button" class="btn-list__item btn btn--default"><i class="fa fa-share"></i> Share</button>
               </div>
             </div>
           </div>
@@ -113,14 +125,14 @@
                 attention of visitors.
               </div>
               <div class="blog-actions btn-list">
-                <a href="blog.html" class="btn-list__item">Read</a>
-                <button type="button" class="btn-list__item">Like</button>
-                <button type="button" class="btn-list__item">Share</button>
+                <a href="blog.html" class="btn-list__item btn-list__item--first btn btn--default"><i class="fa fa-arrow-right"></i> Read</a>
+                <button type="button" class="btn-list__item btn btn--default"><i class="fa fa-thumbs-up"></i> Like</button>
+                <button type="button" class="btn-list__item btn btn--default"><i class="fa fa-share"></i> Share</button>
               </div>
             </div>
           </div>
         </div>
-      </div>    
+      </div>
 
 
       <!-- arrows to control left and right slide -->
@@ -130,41 +142,117 @@
 
     </div>
 
-    <main>
-      <div class="search">
-        <i class="search__icon fa fa-search"></i>
-        <input class="search__input" type="search" name="blogSearch" placeholder="Search">
-      </div>
-      <div class="blogs">
-        <div class="card card--blog">
-          <img class="card__image"  src="./img/blog1.jpg"  alt="Blog Image" />
-          <div class="card__title">
-            This is the title for the blog.
+    <div class="search search--blogs">
+      <i class="search__icon fa fa-search"></i>
+      <input class="search__input" type="search" name="blogSearch" placeholder="Search">
+    </div>
+    <div class="blogs">
+      <div class="card card--blog">
+        <img class="card__image"  src="./img/blog1.jpg"  alt="Blog Image" />
+        <div class="card__title">
+          This is the title for the blog.
+        </div>
+        <div class="card__body">
+            
+          <a href="#" class="blog__info avatar">
+            <img class="avatar__image avatar__image--x-small" src="./img/author1.png" alt="author">
+            <span class="avatar__text">
+              <span class="avatar__title">Sudhir Mitahrwal</span>
+              <span class="avatar__sub-title"> July 16, 2016  <span class="dot-devider">&middot;</span>  4 min </span>
+            </span>
+          </a>
+          <div class="blog__description">
+            This is some descriptions of the blog. This could be set to a maximum size and then use ...
           </div>
-          <div class="card__body">
-              
-            <a href="#" class="blog__info avatar">
-              <img class="avatar__image avatar__image--x-small" src="./img/author1.png" alt="author">
-              <span class="avatar__text">
-                <span class="avatar__title">Sudhir Mitahrwal</span>
-                <span class="avatar__sub-title"> July 16, 2016  <span class="dot-devider">&middot;</span>  4 min </span>
-              </span>
-            </a>
-            <div class="blog__description">
-              This is some descriptions of the blog. This could be set to a maximum size and then use ...
-            </div>
-          </div>  
-          <div class="card__footer">
-            <div class="btn-list">
-              <a href="blog.html" class="btn-list__item"><i class="fa fa-arrow-right"></i> Read</a>
-              <button type="button" class="btn-list__item"><i class="fa fa-thumbs-up"></i> Like</button>
-              <button type="button" class="btn-list__item"><i class="fa fa-share"></i> Share</button>
-            </div>
+        </div>  
+        <div class="card__footer">
+          <div class="btn-list">
+            <a href="blog.html" class="btn-list__item btn"><i class="fa fa-arrow-right"></i> Read</a>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-thumbs-up"></i> Like</button>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-share"></i> Share</button>
+          </div>
+        </div>
+      </div>  <div class="card card--blog">
+        <img class="card__image"  src="./img/blog1.jpg"  alt="Blog Image" />
+        <div class="card__title">
+          This is the title for the blog.
+        </div>
+        <div class="card__body">
+            
+          <a href="#" class="blog__info avatar">
+            <img class="avatar__image avatar__image--x-small" src="./img/author1.png" alt="author">
+            <span class="avatar__text">
+              <span class="avatar__title">Sudhir Mitahrwal</span>
+              <span class="avatar__sub-title"> July 16, 2016  <span class="dot-devider">&middot;</span>  4 min </span>
+            </span>
+          </a>
+          <div class="blog__description">
+            This is some descriptions of the blog. This could be set to a maximum size and then use ...
+          </div>
+        </div>  
+        <div class="card__footer">
+          <div class="btn-list">
+            <a href="blog.html" class="btn-list__item btn"><i class="fa fa-arrow-right"></i> Read</a>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-thumbs-up"></i> Like</button>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-share"></i> Share</button>
+          </div>
+        </div>
+      </div> 
+      <div class="card card--blog">
+        <img class="card__image"  src="./img/blog1.jpg"  alt="Blog Image" />
+        <div class="card__title">
+          This is the title for the blog.
+        </div>
+        <div class="card__body">
+            
+          <a href="#" class="blog__info avatar">
+            <img class="avatar__image avatar__image--x-small" src="./img/author1.png" alt="author">
+            <span class="avatar__text">
+              <span class="avatar__title">Sudhir Mitahrwal</span>
+              <span class="avatar__sub-title"> July 16, 2016  <span class="dot-devider">&middot;</span>  4 min </span>
+            </span>
+          </a>
+          <div class="blog__description">
+            This is some descriptions of the blog. This could be set to a maximum size and then use ...
+          </div>
+        </div>  
+        <div class="card__footer">
+          <div class="btn-list">
+            <a href="blog.html" class="btn-list__item btn"><i class="fa fa-arrow-right"></i> Read</a>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-thumbs-up"></i> Like</button>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-share"></i> Share</button>
           </div>
         </div>
       </div>
-    </main>
+      <div class="card card--blog">
+        <img class="card__image"  src="./img/blog1.jpg"  alt="Blog Image" />
+        <div class="card__title">
+          This is the title for the blog.
+        </div>
+        <div class="card__body">
+            
+          <a href="#" class="blog__info avatar">
+            <img class="avatar__image avatar__image--x-small" src="./img/author1.png" alt="author">
+            <span class="avatar__text">
+              <span class="avatar__title">Sudhir Mitahrwal</span>
+              <span class="avatar__sub-title"> July 16, 2016  <span class="dot-devider">&middot;</span>  4 min </span>
+            </span>
+          </a>
+          <div class="blog__description">
+            This is some descriptions of the blog. This could be set to a maximum size and then use ...
+          </div>
+        </div>  
+        <div class="card__footer">
+          <div class="btn-list">
+            <a href="blog.html" class="btn-list__item btn"><i class="fa fa-arrow-right"></i> Read</a>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-thumbs-up"></i> Like</button>
+            <button type="button" class="btn-list__item btn"><i class="fa fa-share"></i> Share</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <script type="text/javascript" src="./js/slider.js"></script>
     <script type="text/javascript" src="./js/app.js"></script>
   </body>
 </html>

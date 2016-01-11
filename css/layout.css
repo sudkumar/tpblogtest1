@@ -1,0 +1,102 @@
+
+/*
+* Media module to make the media layout
+*/
+
+.media::after{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.media__image{
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+
+.media__body{
+  overflow: auto;
+}
+
+
+/*
+* List module for laying out lists
+*/
+
+.list{
+  list-style-type: none;
+}
+
+.list__item{
+  display: block;
+  margin: 5px auto;
+}
+
+.list__item--first{
+  margin-top: 0;
+}
+
+.list__item--last{
+  margin-bottom: 0;
+}
+
+.list__item--inline{
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.list__item--inline--first{
+  margin-left: 0;
+}
+
+.list__item--inline--last{
+  margin-right: 0;
+}
+
+
+/*
+* Avatar type layout
+*/
+
+.avatar{
+  line-height: 1;
+  display: inline-block;
+}
+
+.avatar__image{
+  border-radius: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  background: white;
+}
+.avatar__image--rounded{
+  border-radius: 5px;
+}
+
+.avatar__image--small{
+  width: 40px; height: 40px;
+}
+.avatar__image--x-small{
+  width: 30px; height: 30px;
+}
+
+.avatar__text{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+.avatar__title{
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.avatar__sub-title{
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+  color: silver;
+}

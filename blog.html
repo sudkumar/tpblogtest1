@@ -6,30 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog | Tourepedia</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/base.css" media="screen" title="main style sheet" charset="utf-8">
+    <link rel="stylesheet" href="./css/modules.css" media="screen" title="main style sheet" charset="utf-8">
+    <link rel="stylesheet" href="./css/layout.css" media="screen" title="main style sheet" charset="utf-8">
     <link rel="stylesheet" href="./css/app.css" media="screen" title="main style sheet" charset="utf-8">
   </head>
   <body>
 
-    <nav class="navbar navbar--fixed-top">
-      <div class="navbar__logo">
-         <div class="logo">
-           Tourepedia
-         </div>
-      </div>
-      <div class="navbar__menu">
-        <a href="index.html" class="navbar__menu__item ">Home</a>
-        <a href="about.html" class="navbar__menu__item ">About</a>
-        <a href="#" class="navbar__menu__item ">Search</a>
-      </div>
+    <nav class="navbar navbar--fixed-top clearfix">
+      <div class="mobile-menu-container" id="mobileMenu">
+        <ul class="list mobile-menu">
+          <a class="list__item mobile-menu__item" href="index.html">
+          <span class="logo">Tourepedia</span>
+          </a>
+          <a class="list__item mobile-menu__item " href="about.html" >About</a>
+          <a class="list__item mobile-menu__item " href="about.html" >Plan A Trip</a>
+          <a class="list__item mobile-menu__item " href="index.html" >Search</a>
+          <a class="list__item mobile-menu__item " href="index.html" >Login</a><a class="list__item mobile-menu__item " href="about.html" >About</a>
 
-      <ul class="list">
-        <!-- <li class="list__item list__item--inline">Login/Singup</li> -->
-        <li class="list__item list__item--inline avatar" >
-          <img class="avatar__image avatar__image--x-small" src="./img/avatar.png" alt="DP" />
-          <span class="avatar__text">User Name</span>
+        </ul>
+      </div>
+      <ul class="list navbar__menu navbar__menu--left">
+        <li class="list__item list__item--inline navbar__menu__item btn navbar__menu__item--toggle" onclick="ShowMenu()">
+          <i class="fa fa-bars"></i>
         </li>
+        <a class="list__item list__item--inline list__item--inline--first navbar__menu__item logo" href="index.html">Tourepedia</a>
+        <li class="list__item list__item--inline list navbar__menu__item--toggle-items">
+          <a class="list__item list__item--inline navbar__menu__item " href="about.html" >About</a>
+          <a class="list__item list__item--inline navbar__menu__item " href="index.html" >Plan A trip</a>
+        </li>  
+      </ul>
+      <ul class="list navbar__menu navbar__menu--right">
+        <button class="list__item list__item--inline navbar__menu__item avatar btn">
+          <img src="./img/avatar.png" alt="user icon" class="avatar__image avatar__image--x-small">
+        </button>
       </ul>
     </nav>
+      
     
     <div class="blog">
       <div class="b-header" style="background-image: url('./img/blog1.jpg')">
